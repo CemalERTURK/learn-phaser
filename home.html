@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Phaser - Making your first game, part 9</title>
+    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        var game = new Phaser.Game(400, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+        function preload() {
+            game.stage.backgroundColor = "#dddddd";
+            game.load.image('game-logo', 'resources/game-logo.png');
+            game.load.image('play-icon', 'resources/play-icon.png');
+            game.load.image('leaderboard-icon', 'resources/leaderboard-icon.png');
+            game.load.image('settings-icon', 'resources/settings-icon.png');
+            game.load.image('shop-icon', 'resources/shop-icon.png');
+            game.load.image('best-score-text', 'resources/best-score-text.png');
+            game.load.image('facebook-full', 'resources/facebook-full.png');
+            game.load.image('twitter-full', 'resources/twitter-full.png');
+            game.load.image('button-back-big', 'resources/button-back-big.png');
+            game.load.image('home-button-back', 'resources/home-button-back.png');
+
+
+        }
+
+        var platforms;
+        
+
+        function create() {
+            platforms = game.add.group();
+            var buttonBackBig = platforms.create(game.world.centerX - 80, 200, 'button-back-big');
+            var gameLogo = platforms.create(game.world.centerX - 160, 30, 'game-logo');
+            var homeButtonBack1 = platforms.create(game.world.centerX - 170, 320, 'home-button-back');
+            var homeButtonBack2 = platforms.create(game.world.centerX - 40, 320, 'home-button-back');
+            var homeButtonBack3 = platforms.create(game.world.centerX + 90, 320, 'home-button-back');
+            var bestScore = platforms.create(game.world.centerX - 135, 410, 'best-score-text');
+            buttonBackBig.tint=0x00868b;
+            homeButtonBack1.tint=0xa020f0;
+            homeButtonBack2.tint=0xd2691e;
+            homeButtonBack3.tint=0xcd2626;
+
+            buttonPlay = game.add.button(game.world.centerX - 10, 222, 'play-icon', nukeButton, this);
+            buttonLeaderboard = game.add.button(game.world.centerX - 150, 330, 'leaderboard-icon', leaderboardButton, this);
+            buttonSettings = game.add.button(game.world.centerX - 20, 330, 'settings-icon', settingsButton, this);
+            buttonShop = game.add.button(game.world.centerX + 110, 330, 'shop-icon', shopButton, this);
+            buttonFacebook = game.add.button(game.world.centerX - 150, 510, 'facebook-full', facebookButton, this);
+            buttonTwitter = game.add.button(game.world.centerX + 30, 510, 'twitter-full', twitterButton, this);
+            
+
+          //  game.add.image(game.world.centerX, game.world.centerY, 'shop-icon').anchor.set(1);
+            
+
+        }
+        function update() { }
+        function nukeButton() {
+
+            // button.pendingDestroy = true;
+
+            // text = game.add.text(game.world.centerX, game.world.centerY, '- button nuked -', { font: '64px Arial', fill: '#ffffff' });
+
+            // text.anchor.set(0.5);
+
+        }
+        function playButton(){}
+        function leaderboardButton(){}
+        function settingsButton(){}
+        function shopButton(){}
+        function facebookButton(){}
+        function twitterButton(){}
+        
+    </script>
+
+</body>
+
+</html>

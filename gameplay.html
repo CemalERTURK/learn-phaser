@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Phaser - Making your first game, part 9</title>
+    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        var game = new Phaser.Game(400, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+        function preload() {
+            game.stage.backgroundColor = "#dddddd";
+            game.load.image('pause-btn-white', 'resources/pause-btn-white.png');
+            game.load.image('circle-enemy', 'resources/circle-enemy.png');
+            game.load.image('segment-2', 'resources/segment-2.png');
+            game.load.image('segment-3', 'resources/segment-3.png');
+            game.load.image('segment-4', 'resources/segment-4.png');
+            game.load.image('segment-5', 'resources/segment-5.png');
+            game.load.image('segment-6', 'resources/segment-6.png');
+
+
+        }
+        var counter = 0;
+        var text = 0;
+        var platforms;
+        var scoreText;
+        var score = 0;
+        var sprites = [];
+        var i = 1;
+        var imageList = ['segment-2', 'segment-3', 'segment-4', 'segment-5', 'segment-6'];
+        var enemy;
+        var tmp = 0;
+
+        function create() {
+            platforms = game.add.group();
+            //game.renderer.renderSession.roundPixels = true;
+            //CreateEnemy(i);
+            CreateLevels(i);
+            CreateEnemy()
+            sprites[0].destroy();
+
+            buttonPause = game.add.button(340, 540, 'pause-btn-white', pauseButton, this);
+            buttonPause2 = game.add.button(100, 540, 'circle-enemy', pauseButton2, this);
+            buttonPause.tint = 0x3a5fcd;
+            //  game.physics.arcade.collide(buttonPause, platforms);
+            // game.physics.arcade.collide(scoreText, platforms);
+            //  game.physics.arcade.overlap(buttonPause, scoreText, collectStar, null, this);
+
+            var ScoreStyle = { font: "45px Arial", fill: "#3a5fcd", align: "center", float: "right" };
+
+            //  game.add.image(game.world.centerX, game.world.centerY, 'shop-icon').anchor.set(1);
+         //   scoreText = game.add.text(150, 540, 'score:'+score, ScoreStyle); //300*540
+            //enemy = game.add.sprite(64, 100, 'circle-enemy');
+            game.time.events.loop(Phaser.Timer.SECOND , CreateEnemy, this);
+            // var enemy2 = game.add.sprite(64, 200, 'circle-enemy');
+            //  game.add.tween(sprite).to( { x: '+300' }, 2000, Phaser.Easing.Linear.None, true);
+
+        }
+        function CreateEnemy() {
+            if (i === 1) {
+
+                if (tmp === 0) {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 2));
+                    enemy = game.add.sprite(x, 0, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 1;
+                }
+                else {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 2));
+                    enemy = game.add.sprite(x, 600, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 0;
+                }
+
+            }
+            if (i === 2) {
+                if (tmp === 0) {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 3));
+                    enemy = game.add.sprite(x, 0, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 1;
+                }
+                else {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 3));
+                    enemy = game.add.sprite(x, 600, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 0;
+                }
+            }
+            if (i === 3) {
+                if (tmp === 0) {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 4));
+                    enemy = game.add.sprite(x, 0, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 1;
+                }
+                else {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 4));
+                    enemy = game.add.sprite(x, 600, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 0;
+                }
+            }
+            if (i === 4) {
+                if (tmp === 0) {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 5));
+                    enemy = game.add.sprite(x, 0, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 1;
+                }
+                else {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 5));
+                    enemy = game.add.sprite(x, 600, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 0;
+                }
+            }
+            if (i === 5) {
+                if (tmp === 0) {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 6));
+                    enemy = game.add.sprite(x, 0, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 1;
+                }
+                else {
+                    var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+                    var x = Math.floor((Math.random() * 400));
+                    var renk = Math.floor((Math.random() * 6));
+                    enemy = game.add.sprite(x, 600, 'circle-enemy');
+                    enemy.tint = tints[renk];
+                    tmp = 0;
+                }
+            }
+            // enemy = game.add.sprite(45, 200, 'circle-enemy');
+            // enemy = game.add.sprite(100, 234, 'circle-enemy');
+            // enemy = game.add.sprite(88, 156, 'circle-enemy');
+
+            //    var ScoreStyle = { font: "32px Arial", fill: "#3a5fcd", align: "center", float: "right" };
+
+            //         scoreText = game.add.text(150, 540, 'score: ' + score, ScoreStyle); //300*540
+
+
+        } 
+        function update() {
+            EnemyMovement(i);
+            ClearLevels();
+            CreateLevels(i);
+            game.physics.enable(sprites, Phaser.Physics.ARCADE);
+           // game.physics.enable(enemy, Phaser.Physics.ARCADE);
+            game.physics.arcade.collide(sprites, enemy);
+            //game.physics.arcade.collide(enemy, platforms);
+
+            game.physics.arcade.overlap(sprites, enemy, CollectEnemy, null, this);
+
+            // if (game.input.mousePointer.isDown) {
+            //     threshold = 123; //some magical number
+            //     if (abs(deltaX) < abs(deltaY)) {
+            //         delta = delta.y;
+            //         if (inputPosition.x < screenWidth / 2) delta = -delta;
+            //         k = (delta / screenHeight) * threshold;
+            //     } else {
+            //         delta = delta.x
+            //         if (inputPosition.y > screenHeight / 2) delta = -delta;
+            //         k = (delta / screenWidth) * threshold ;//
+            //     }
+            //     currentAngle += k * deltaTime;   //delta time is elapsed time has passed since previous frame
+
+            // }
+            scoreText = game.add.text(150, 540, 'score:'+score); //300*540
+
+
+        }
+        function CollectEnemy(){
+            enemy.kill(); 
+ 
+            score += 10;
+           // scoreText.text = 'Score: ' + score;
+
+        }
+        function EnemyMovement(level) {
+            var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+            var x = [];
+            var y = [];
+            switch (level) {
+                case 1: {
+                    tween = game.add.tween(enemy).to({ x: game.world.centerX, y: game.world.centerY }, 2000, Phaser.Easing.Linear.None, true);
+                }
+                case 2: {
+                    tween = game.add.tween(enemy).to({ x: game.world.centerX, y: game.world.centerY }, 2000, Phaser.Easing.Linear.None, true);
+                }
+                case 3: {
+                    tween = game.add.tween(enemy).to({ x: game.world.centerX, y: game.world.centerY }, 2000, Phaser.Easing.Linear.None, true);
+                }
+                case 4: {
+                    tween = game.add.tween(enemy).to({ x: game.world.centerX, y: game.world.centerY }, 2000, Phaser.Easing.Linear.None, true);
+                }
+                case 5: {
+                    tween = game.add.tween(enemy).to({ x: game.world.centerX, y: game.world.centerY }, 2000, Phaser.Easing.Linear.None, true);
+                }
+            }
+
+        }
+        function pauseButton2() {
+            // var ScoreStyle = { font: "65px Arial", fill: "#3a5fcd", align: "center", float: "right" };
+
+            // scoreText = game.add.text(150, 540, 'score:'+score, ScoreStyle); //300*540
+
+        }
+        function pauseButton() {
+            score += 10;
+            if (score === 50) {
+                i = 2;
+            }
+            if (score === 100) {
+                i = 3;
+            }
+            if (score === 150) {
+                i = 4;
+
+            }
+            if (score === 200) {
+                i = 5;
+            }
+
+        }
+        function collectStar() { }
+        function homeButton() { }
+
+        function ClearLevels() {
+            if (sprites[1]) {
+                sprites[0].destroy();
+                sprites[1].destroy();
+            } 
+            if (sprites[2]) {
+                sprites[0].destroy();
+                sprites[1].destroy();
+                sprites[2].destroy();
+            }
+            if (sprites[3]) {
+                sprites[0].destroy();
+                sprites[1].destroy();
+                sprites[2].destroy();
+                sprites[3].destroy();
+            }
+            if (sprites[4]) {
+                sprites[0].destroy();
+                sprites[1].destroy();
+                sprites[2].destroy();
+                sprites[3].destroy();
+                sprites[4].destroy();
+            }
+            if (sprites[5]) {
+                sprites[0].destroy();
+                sprites[1].destroy();
+                sprites[2].destroy();
+                sprites[3].destroy();
+                sprites[4].destroy();
+                sprites[5].destroy();
+            }
+        }
+
+        function CreateLevels(level) {
+
+            var tints = [0xcd2626, 0x3a5fcd, 0xd2691e, 0xa020f0, 0x32cd32, 0x1c0f45]; //kırmızı,mavi,turuncu,mor,yeşil,lacivert
+            //  var angelYDeltas = [34, 120, 90, 72, 60];
+            var angle = 360 / (level + 1);
+            var x = [];
+            var y = [];
+            switch (level) {
+                case 1: {
+                    y.push(34);
+                    y.push(-34);
+                    x.push(0);
+                    x.push(0);
+                }
+                case 2: {
+
+                    x.push(0);
+                    x.push(-40); //-40
+                    x.push(40); //40
+
+                    y.push(45);    //45
+                    y.push(-24);//-24
+                    y.push(-24);//-24
+
+                }
+                case 3: {
+
+                    x.push(0);
+                    x.push(-50);//-50
+                    x.push(0);
+                    x.push(50);//50
+
+                    y.push(50); //50
+                    y.push(0);
+                    y.push(-50);//-50
+                    y.push(0);
+
+
+                }
+                case 4: {
+                    x.push(0);
+                    x.push(-50);//-50
+                    x.push(-31);//-31
+                    x.push(31);//31
+                    x.push(50);//50
+
+                    y.push(52);//52
+                    y.push(16);//16
+                    y.push(-43);//-43
+                    y.push(-43);//-43
+                    y.push(16);//16
+
+
+                }
+                case 5: {
+                    x.push(0);
+                    x.push(-46);
+                    x.push(-46);
+                    x.push(0);
+                    x.push(46);
+                    x.push(46);
+
+                    y.push(54);
+                    y.push(27);
+                    y.push(-27);
+                    y.push(-54);
+                    y.push(-27);
+                    y.push(27);
+
+
+                }
+
+                    for (var k = 0; k < level + 1; k++) {
+                        sprite = game.add.sprite(game.world.centerX + x[k], game.world.centerY + y[k], imageList[level - 1]);
+                        sprite.anchor.set(0.5);
+                        sprite.angle = angle * k;
+                        sprite.tint = tints[k];
+                        sprites[k] = sprite;
+                    }
+
+            }
+
+
+
+
+        }
+    </script>
+
+</body>
+
+</html>
