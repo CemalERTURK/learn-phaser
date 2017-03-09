@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Phaser game</title>
+    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <!--<script src="scripts/boot.js"></script>-->
+    <script type="text/javascript" src="scripts/home.js"></script>
+    <script type="text/javascript" src="scripts/gameplay.js"></script>
+    <script type="text/javascript" src="scripts/pause.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+      //  window.onload = function () {
+            var game = new Phaser.Game(400, 600, Phaser.AUTO, '');
+           // game.state.add('boot', game.boot);
+            game.state.add('home', Game.home);
+            game.state.add('gameplay', Game.gameplay);
+            game.state.add('pause', Game.pause);
+         //   game.state.add('gameover', Game.gameover);
+
+            game.state.start('home');
+       // };
+    </script>
+
+</body>
+
+</html>
